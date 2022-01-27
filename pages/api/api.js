@@ -30,10 +30,7 @@ const getColumns = (curr) => {
             return (rot % 2 == 0 ? 2:2)
     }
 }
-const getScore = (player) => {
-        
-    return (score)
-}
+
 const dropBlock = (block,tiles) => {
     let id = tiles.reduce((a,b) => Math.max(a, b), 0) + 1
     let columns = getColumns(block)
@@ -48,12 +45,40 @@ const dropBlock = (block,tiles) => {
             }
         }
     })
+
     if(!(row == 0 && column == columns + pos - 1 && tiles[10*row+column] == 0)) {
         row++
     }
     Array(columns).fill(0).forEach((_, col) => {
         tiles[10*row+col+pos]=id
     })
+}
+
+const updateGameState = (tiles,score) => {
+    for(let row = 0; row < 20; row++) {
+        complete=true
+        for(let column = 0; column < 10; column++) {
+            if(tiles[column + 10 * row] == 0) {
+                complete=false
+                break
+            }
+        }
+        if(complete) {
+            score+=10
+            for(let clearRow=row;clearRow<20;clearRow++){
+                for(let column=0;column<10;column++){
+                    if(clearRow==19){
+                        tiles[10*clearRow+column]=0
+                    }
+                    else{
+                        tiles[10*clearRow+column]=tiles[10*(clearRow+1)+column]
+                    }
+                }
+            }
+            row--
+        }
+    }
+    return [tiles,score]
 }
 module.exports=async(req,res)=>{
     const client=await dbClient;
