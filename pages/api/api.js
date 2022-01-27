@@ -30,17 +30,9 @@ const getColumns = (curr) => {
             return (rot % 2 == 0 ? 2:2)
     }
 }
-const getScore = (map, player) => {
-    let troops = 3
-    map.continents.forEach((x) => {
-        for(let i = 0; i<x.tiles.length; i++) {
-            if(map.tiles[x.tiles[i]].controller != player) {
-                return
-            }
-        }
-        troops += x.reward
-    })
-    return troops
+const getScore = (player) => {
+        
+    return (score)
 }
 const dropBlock = (block,tiles) => {
     let id = tiles.reduce((a,b) => Math.max(a, b), 0) + 1
@@ -75,6 +67,9 @@ module.exports=async(req,res)=>{
     switch(req.query.type){
         case "getState":
             res.status(200).json([storage.score,storage.tiles,storage.current,storage.next])
+        case "getScore":
+            res.status(200).json([storage.score])
+            break
         default:
             res.status(404).send()
     }
