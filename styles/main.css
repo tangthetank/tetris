@@ -1,0 +1,14 @@
+colors {
+    --purple-050: rgba(29, 17, 40, 1);
+    --purple-100: rgb(62, 44, 121);
+    --purple-200: rgba(89, 65, 169, 1);
+    --purple-300: rgba(109, 114, 195, 1);
+    --purple-500: rgba(229, 212, 237, 1);
+
+    --orange-050: rgba(13, 1, 6, 1);
+    --orange-100: rgb(73, 13, 13);
+    --orange-200: rgba(255, 51, 31, 1);
+    --orange-300: rgba(255, 51, 31, 1);
+    --orange-500: rgba(255, 101, 87, 1);
+}
+
